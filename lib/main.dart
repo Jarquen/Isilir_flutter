@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:isilir/src/controllers/auth_controller.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:isilir/src/features/router.dart';
 import 'package:isilir/src/pages/login_page.dart';
 import 'firebase_options.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       home: LoginPage(),
       debugShowCheckedModeBanner: false,
       // initialRoute: '/login',
-      // getPages: appPages,
+      getPages: appPages,
     );
   }
 }

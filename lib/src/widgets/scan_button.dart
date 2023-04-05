@@ -4,12 +4,12 @@ import 'package:flutter_svg/svg.dart';
 class ScanButton extends StatelessWidget {
   const ScanButton({Key? key, required this.onPressed}) : super(key: key);
 
-  final Function onPressed;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () => {print(onPressed)},
+      onPressed: onPressed,
       foregroundColor: Colors.white,
       backgroundColor: Colors.deepOrangeAccent,
       child: SvgPicture.asset(

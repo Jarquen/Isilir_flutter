@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../features/router.dart';
-import '../pages/list_page.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -50,7 +49,7 @@ class _NavBar extends State<NavBar> {
                         setState(() {
                           _selectedIndex = 1;
                         });
-                        Get.toNamed(Routes.listPage);
+                        Get.toNamed(Routes.scanPage);
                       }),
                   IconBottomBar(
                       text: "History",
