@@ -5,6 +5,7 @@ import 'package:isilir/src/controllers/auth_controller.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:isilir/src/features/router.dart';
+import 'package:isilir/src/pages/home_page.dart';
 import 'package:isilir/src/pages/login_page.dart';
 import 'firebase_options.dart';
 
@@ -14,7 +15,8 @@ Future<void> main() async {
   final firstCamera = cameras.first;
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  ).then((value) => Get.put(AuthController()));
+  );
+      // .then((value) => Get.put(AuthController()));
 
   runApp(const MyApp());
 }
@@ -25,7 +27,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: LoginPage(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Home'),
+        ),
+        body: HomePage(),
+      ),
       debugShowCheckedModeBanner: false,
       // initialRoute: '/login',
       getPages: appPages,

@@ -12,6 +12,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBar extends State<NavBar> {
   int _selectedIndex = 0;
+  String pageName = "";
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class _NavBar extends State<NavBar> {
                         setState(() {
                           _selectedIndex = 0;
                         });
-                        Get.toNamed(Routes.homePage);
+                        Get.toNamed(Routes.presentationPage);
                       }),
                   IconBottomBar(
                       text: "List",
@@ -48,8 +49,9 @@ class _NavBar extends State<NavBar> {
                       onPressed: () {
                         setState(() {
                           _selectedIndex = 1;
+                          pageName = "listPage";
                         });
-                        Get.toNamed(Routes.scanPage);
+                        Get.toNamed(Routes.listPage);
                       }),
                   IconBottomBar(
                       text: "History",

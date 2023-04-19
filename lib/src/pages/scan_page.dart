@@ -1,21 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:isilir/src/features/router.dart';
-import 'package:isilir/src/pages/history_page.dart';
-import 'package:isilir/src/utils/ProductDetails.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
-import '../widgets/appbar.dart';
-import '../widgets/navbar.dart';
-import '../widgets/scan_button.dart';
-
 import 'package:http/http.dart' as http;
+import 'package:isilir/src/features/router.dart';
+import 'package:isilir/src/models/ProductDetails.dart';
+import 'package:isilir/src/pages/home_page.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import '../widgets/appbar.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({Key? key}) : super(key: key);
@@ -71,7 +68,11 @@ class _ScanPageState extends State<ScanPage> {
       if (result != null) {
         fetchData(result!.code).then((value) => {createProduct(value)});
         controller.pauseCamera();
-        Get.toNamed(Routes.historyPage);
+        Get.toNamed(Routes.homePage);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
       }
     });
   }
@@ -90,6 +91,7 @@ class _ScanPageState extends State<ScanPage> {
   }
 
   Future<void> createProduct(data) async {
+    DateTime now = DateTime.now();
     final productDoc = FirebaseFirestore.instance.collection("product");
     
     final product = Product(
@@ -98,6 +100,7 @@ class _ScanPageState extends State<ScanPage> {
         brands: data.brands,
         image_url: data.image_url,
         conservation_conditions_fr: data.conservation_conditions_fr);
+        createdAt: now;
     final json = product.toJson();
 
     await productDoc

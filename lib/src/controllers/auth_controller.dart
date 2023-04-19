@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:isilir/src/pages/home_page.dart';
 import 'package:isilir/src/pages/login_page.dart';
+import 'package:isilir/src/pages/presentation_page.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
@@ -23,7 +24,7 @@ class AuthController extends GetxController {
       print("login page");
       Get.offAll(() => LoginPage());
     } else {
-      Get.offAll(() => const HomePage());
+      Get.offAll(() => const PresentationPage());
     }
   }
 

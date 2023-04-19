@@ -4,13 +4,15 @@ class Product {
   String? image_url;
   String? brands;
   String? conservation_conditions_fr;
+  DateTime? createdAt;
 
   Product({
     this.code,
     this.generic_name,
     this.brands,
     this.image_url,
-    this.conservation_conditions_fr
+    this.conservation_conditions_fr,
+    this.createdAt
   });
 
   Product.fromJson(Map<String, dynamic> json) {
@@ -19,6 +21,7 @@ class Product {
     brands = json['brands'];
     image_url = json['image_url'];
     conservation_conditions_fr = json['conservation_conditions_fr'];
+    createdAt = json['createdAt'];
   }
 
   Map<String, dynamic> toJson() {
@@ -28,6 +31,7 @@ class Product {
     data['brands'] = brands;
     data['image_url'] = image_url;
     data['conservation_conditions_fr'] = conservation_conditions_fr;
+    data['createdAt'] = createdAt;
     return data;
   }
 }

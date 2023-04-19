@@ -8,15 +8,9 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(text: 'Profile'),
-      body: const Center(
+    return Center(
         child: Text("Profile page"),
-      ),
-      bottomNavigationBar: const NavBar(),
-      floatingActionButton: ScanButton(onPressed: () {}),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
+      );
   }
 }
 

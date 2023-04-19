@@ -8,14 +8,8 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(text: 'History'),
-      body: const Center(
+    return Center(
         child: Text("History page"),
-      ),
-      bottomNavigationBar: const NavBar(),
-      floatingActionButton: ScanButton(onPressed: () {}),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
+      );
   }
 }
