@@ -28,13 +28,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Home'),
-        ),
         body: HomePage(),
       ),
       debugShowCheckedModeBanner: false,
-      // initialRoute: '/login',
+      initialRoute: '/login',
       getPages: appPages,
     );
   }

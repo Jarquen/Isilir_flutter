@@ -96,11 +96,11 @@ class _ScanPageState extends State<ScanPage> {
     
     final product = Product(
         code: data.code,
-        generic_name: data.generic_name,
+        product_name: data.product_name,
         brands: data.brands,
         image_url: data.image_url,
         conservation_conditions_fr: data.conservation_conditions_fr);
-        createdAt: now;
+        createdAt: DateTime.now();
     final json = product.toJson();
 
     await productDoc

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/appbar.dart';
-import '../widgets/navbar.dart';
+import '../widgets/navbartest.dart';
 import '../widgets/scan_button.dart';
 
 class ProfilePage extends StatelessWidget {

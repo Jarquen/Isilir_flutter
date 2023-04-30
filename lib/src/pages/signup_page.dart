@@ -4,11 +4,13 @@ import 'package:isilir/src/controllers/auth_controller.dart';
 import 'package:isilir/src/features/router.dart';
 import '../controllers/login_controller.dart';
 import '../widgets/appbar.dart';
-import '../widgets/navbar.dart';
+import '../widgets/navbartest.dart';
 import '../widgets/scan_button.dart';
 
 class SignupPage extends StatelessWidget {
   SignupPage({Key? key}) : super(key: key);
+
+  final controller = Get.put(AuthController());
 
   final emailEditingController = TextEditingController();
   final passwordEditingController = TextEditingController();

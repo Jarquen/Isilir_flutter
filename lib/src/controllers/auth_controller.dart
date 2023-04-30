@@ -24,7 +24,7 @@ class AuthController extends GetxController {
       print("login page");
       Get.offAll(() => LoginPage());
     } else {
-      Get.offAll(() => const PresentationPage());
+      Get.offAll(() => HomePage());
     }
   }
 

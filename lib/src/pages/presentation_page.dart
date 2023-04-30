@@ -12,48 +12,49 @@ import 'package:isilir/src/pages/scan_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../widgets/appbar.dart';
-import '../widgets/navbar.dart';
+import '../widgets/navbartest.dart';
 import '../widgets/scan_button.dart';
 import 'package:isilir/src/pages/history_page.dart';
 
 class PresentationPage extends StatelessWidget {
-  const PresentationPage({
+  PresentationPage({
     Key? key,
   }) : super(key: key);
+
+  final controller = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              "assets/images/barcode.svg",
-              color: Colors.deepOrange,
-              width: 80,
-              height: 80,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            "assets/images/barcode.svg",
+            color: Colors.deepOrange,
+            width: 80,
+            height: 80,
+          ),
+          const Text(
+            "Bienvenue sur Isilir",
+            style: TextStyle(
+              fontSize: 32,
             ),
-            const Text(
-              "Bienvenue sur Isilir",
-              style: TextStyle(
-                fontSize: 32,
-              ),
+          ),
+          const Text(
+            "Veuillez scanner un produit",
+            // barcode,
+            style: TextStyle(
+              fontSize: 18,
             ),
-            const Text(
-              "Veuillez scanner un produit",
-              // barcode,
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  AuthController.instance.logout();
-                  // test;
-                },
-                child: const Text("logout"))
-          ],
-        ),
-      );
+          ),
+          ElevatedButton(
+              onPressed: () {
+                AuthController.instance.logout();
+              },
+              child: const Text("logout"))
+        ],
+      ),
+    );
   }
 }

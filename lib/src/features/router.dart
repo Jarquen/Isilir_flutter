@@ -23,9 +23,9 @@ class Routes {
 
 final appPages = [
   GetPage(name: Routes.homePage, page: () => HomePage()),
-  GetPage(name: Routes.presentationPage, page: () => const PresentationPage()),
-  GetPage(name: Routes.informationPage, page: () => const InformationPage()),
-  GetPage(name: Routes.listPage, page: () => const ListPage()),
+  GetPage(name: Routes.presentationPage, page: () => PresentationPage()),
+  // GetPage(name: Routes.informationPage, page: () => InformationPage()),
+  GetPage(name: Routes.listPage, page: () => ListPage()),
   GetPage(name: Routes.historyPage, page: () => const HistoryPage()),
   GetPage(name: Routes.profilePage, page: () => const ProfilePage()),
   GetPage(name: Routes.scanPage, page: () => const ScanPage()),

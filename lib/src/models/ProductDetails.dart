@@ -1,6 +1,6 @@
 class Product {
   String? code;
-  String? generic_name;
+  String? product_name;
   String? image_url;
   String? brands;
   String? conservation_conditions_fr;
@@ -8,7 +8,7 @@ class Product {
 
   Product({
     this.code,
-    this.generic_name,
+    this.product_name,
     this.brands,
     this.image_url,
     this.conservation_conditions_fr,
@@ -17,7 +17,7 @@ class Product {
 
   Product.fromJson(Map<String, dynamic> json) {
     code = json['code'];
-    generic_name = json['generic_name'];
+    product_name = json['product_name'];
     brands = json['brands'];
     image_url = json['image_url'];
     conservation_conditions_fr = json['conservation_conditions_fr'];
@@ -27,7 +27,7 @@ class Product {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['code'] = code;
-    data['generic_name'] = generic_name;
+    data['product_name'] = product_name;
     data['brands'] = brands;
     data['image_url'] = image_url;
     data['conservation_conditions_fr'] = conservation_conditions_fr;

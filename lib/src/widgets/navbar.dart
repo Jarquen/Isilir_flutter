@@ -1,83 +1,82 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:isilir/src/controllers/navbar_controller.dart';
 
 import '../features/router.dart';
 
-class NavBar extends StatefulWidget {
-  const NavBar({super.key});
+class Navbar extends StatefulWidget {
+  Navbar({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  State<NavBar> createState() => _NavBar();
+  State<Navbar> createState() => _NavbarState();
 }
 
-class _NavBar extends State<NavBar> {
+class _NavbarState extends State<Navbar> {
+  final controller = Get.put(NavbarController());
+
   int _selectedIndex = 0;
-  String pageName = "";
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: BottomAppBar(
-          shape: const CircularNotchedRectangle(),
-          elevation: 0,
-          color: Colors.black87,
-          child: SizedBox(
-            height: 56,
-            width: MediaQuery.of(context).size.width,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconBottomBar(
-                      text: "Home",
-                      icon: Icons.home,
-                      selected: _selectedIndex == 0,
-                      onPressed: () {
-                        setState(() {
-                          _selectedIndex = 0;
-                        });
-                        Get.toNamed(Routes.presentationPage);
-                      }),
-                  IconBottomBar(
-                      text: "List",
-                      icon: Icons.list,
-                      selected: _selectedIndex == 1,
-                      onPressed: () {
-                        setState(() {
-                          _selectedIndex = 1;
-                          pageName = "listPage";
-                        });
-                        Get.toNamed(Routes.listPage);
-                      }),
-                  IconBottomBar(
-                      text: "History",
-                      icon: Icons.history,
-                      selected: _selectedIndex == 2,
-                      onPressed: () {
-                        setState(() {
-                          _selectedIndex = 2;
-                        });
-                        Get.toNamed(Routes.historyPage);
-                      }),
-                  IconBottomBar(
-                      text: "Profile",
-                      icon: Icons.account_circle_outlined,
-                      selected: _selectedIndex == 3,
-                      onPressed: () {
-                        setState(() {
-                          _selectedIndex = 3;
-                        });
-                        Get.toNamed(Routes.profilePage);
-                      })
-                ],
-              ),
-            ),
+    return BottomAppBar(
+      shape: const CircularNotchedRectangle(),
+      elevation: 0,
+      color: Colors.black87,
+      child: SizedBox(
+        height: 56,
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconBottomBar(
+                  text: "Home",
+                  icon: Icons.home,
+                  selected: _selectedIndex == 0,
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 0;
+                    });
+                    Get.find<NavbarController>().changeTabIndex(_selectedIndex);
+                  }),
+              IconBottomBar(
+                  text: "List",
+                  icon: Icons.list,
+                  selected: _selectedIndex == 1,
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 1;
+                    });
+                    Get.find<NavbarController>().changeTabIndex(_selectedIndex);
+                  }),
+              IconBottomBar(
+                  text: "History",
+                  icon: Icons.history,
+                  selected: _selectedIndex == 2,
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 2;
+                    });
+                    Get.find<NavbarController>().changeTabIndex(_selectedIndex);
+                  }),
+              IconBottomBar(
+                  text: "Profile",
+                  icon: Icons.account_circle_outlined,
+                  selected: _selectedIndex == 3,
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 3;
+                    });
+                    Get.find<NavbarController>().changeTabIndex(_selectedIndex);
+                  })
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
@@ -88,7 +87,8 @@ class IconBottomBar extends StatelessWidget {
   final Function() onPressed;
 
   const IconBottomBar(
-      {super.key, required this.text,
+      {super.key,
+      required this.text,
       required this.icon,
       required this.selected,
       required this.onPressed});
