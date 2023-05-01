@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
     PresentationPage(),
     ListPage(),
     const HistoryPage(),
-    const ProfilePage()
+    ProfilePage()
   ];
 
   @override

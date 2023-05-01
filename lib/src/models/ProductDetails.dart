@@ -3,16 +3,18 @@ class Product {
   String? product_name;
   String? image_url;
   String? brands;
-  String? conservation_conditions_fr;
+  String? categories;
   DateTime? createdAt;
+  String? description;
 
   Product({
     this.code,
     this.product_name,
     this.brands,
     this.image_url,
-    this.conservation_conditions_fr,
-    this.createdAt
+    this.categories,
+    this.createdAt,
+    this.description
   });
 
   Product.fromJson(Map<String, dynamic> json) {
@@ -20,8 +22,9 @@ class Product {
     product_name = json['product_name'];
     brands = json['brands'];
     image_url = json['image_url'];
-    conservation_conditions_fr = json['conservation_conditions_fr'];
+    categories = json['categories'];
     createdAt = json['createdAt'];
+    description = json['description'];
   }
 
   Map<String, dynamic> toJson() {
@@ -30,8 +33,9 @@ class Product {
     data['product_name'] = product_name;
     data['brands'] = brands;
     data['image_url'] = image_url;
-    data['conservation_conditions_fr'] = conservation_conditions_fr;
+    data['categories'] = categories;
     data['createdAt'] = createdAt;
+    data['description'] = description;
     return data;
   }
 }

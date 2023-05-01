@@ -4,7 +4,7 @@ import 'package:isilir/src/models/ProductDetails.dart';
 
 class ListController extends GetxController {
   // Rx<List<Product>> products = Rx<List<Product>>([]);
-  List products = [];
+  RxList products = [].obs;
   late Product product;
 
   var isLoading = false.obs;
@@ -25,11 +25,11 @@ class ListController extends GetxController {
     isLoading.value = true;
     try {
       List productsList = [];
-      final documentSnapshot = await FirebaseFirestore.instance.collection("product").get();
+      final documentSnapshot = await FirebaseFirestore.instance.collection(
+          "product").get();
       productsList = documentSnapshot.docs.map((doc) => doc.data()).toList();
-      products = productsList;
+      products.value = productsList;
       isLoading.value = false;
-      print(products);
       update();
     } catch (error) {
       print(error);
@@ -38,7 +38,16 @@ class ListController extends GetxController {
 
   void deleteProduct(String code) async {
     try {
-      await FirebaseFirestore.instance.collection("product").doc().get();
+      final documentSnapshot = await FirebaseFirestore.instance.collection(
+          "product").where("code", isEqualTo: code).get();
+
+      for (var doc in documentSnapshot.docs) {
+        {
+          await FirebaseFirestore.instance.collection("product").doc(doc.reference.id).delete();
+        }
+      }
+
+      print("success");
     } catch (error) {
       print(error);
     }

@@ -48,11 +48,6 @@ class PresentationPage extends StatelessWidget {
               fontSize: 18,
             ),
           ),
-          ElevatedButton(
-              onPressed: () {
-                AuthController.instance.logout();
-              },
-              child: const Text("logout"))
         ],
       ),
     );

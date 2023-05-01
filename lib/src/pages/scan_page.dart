@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:isilir/src/features/router.dart';
 import 'package:isilir/src/models/ProductDetails.dart';
 import 'package:isilir/src/pages/home_page.dart';
+import 'package:isilir/src/pages/information_page.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../widgets/appbar.dart';
@@ -66,12 +67,16 @@ class _ScanPageState extends State<ScanPage> {
       });
 
       if (result != null) {
-        fetchData(result!.code).then((value) => {createProduct(value)});
+        Product product = {} as Product;
+        fetchData(result!.code).then((value) => {
+          createProduct(value),
+          product = value as Product
+        });
         controller.pauseCamera();
-        Get.toNamed(Routes.homePage);
+        Get.toNamed(Routes.informationPage);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => InformationPage(product: product,)),
         );
       }
     });
@@ -99,7 +104,7 @@ class _ScanPageState extends State<ScanPage> {
         product_name: data.product_name,
         brands: data.brands,
         image_url: data.image_url,
-        conservation_conditions_fr: data.conservation_conditions_fr);
+        categories: data.categories);
         createdAt: DateTime.now();
     final json = product.toJson();
 
