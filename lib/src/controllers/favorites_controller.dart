@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:isilir/src/models/ProductDetails.dart';
 
-class ListController extends GetxController {
+class FavoritesController extends GetxController {
   // Rx<List<Product>> products = Rx<List<Product>>([]);
   RxList products = [].obs;
   late Product product;
@@ -11,22 +11,22 @@ class ListController extends GetxController {
 
   @override
   void onInit() async {
-    await fetchAllProducts();
+    await fetchAllFavoritesProducts();
     super.onInit();
   }
 
   @override
   void onReady() async {
     super.onReady();
-    await fetchAllProducts();
+    await fetchAllFavoritesProducts();
   }
 
-  Future fetchAllProducts() async {
+  Future fetchAllFavoritesProducts() async {
     isLoading.value = true;
     try {
       List productsList = [];
-      final documentSnapshot = await FirebaseFirestore.instance.collection(
-          "product").get();
+      final documentSnapshot =
+          await FirebaseFirestore.instance.collection("product").where("favorite", isEqualTo: true).get();
       productsList = documentSnapshot.docs.map((doc) => doc.data()).toList();
       products.value = productsList;
       isLoading.value = false;
@@ -52,22 +52,4 @@ class ListController extends GetxController {
       print(error);
     }
   }
-
-  void addToFavorite(String code) async {
-    try {
-      final documentSnapshot = await FirebaseFirestore.instance.collection(
-          "product").where("code", isEqualTo: code).get();
-
-      for (var doc in documentSnapshot.docs) {
-        {
-          await FirebaseFirestore.instance.collection("product").doc(doc.reference.id).update({"favorite": true});
-        }
-      }
-
-      print("success");
-    } catch (error) {
-      print(error);
-    }
-  }
-
 }

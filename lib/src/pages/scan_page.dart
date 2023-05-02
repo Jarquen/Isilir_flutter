@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
@@ -67,17 +68,15 @@ class _ScanPageState extends State<ScanPage> {
       });
 
       if (result != null) {
-        Product product = {} as Product;
         fetchData(result!.code).then((value) => {
           createProduct(value),
-          product = value as Product
         });
         controller.pauseCamera();
-        Get.toNamed(Routes.informationPage);
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => InformationPage(product: product,)),
-        );
+        Navigator.pop(context);
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => InformationPage(product: product,)),
+        // );
       }
     });
   }
@@ -98,7 +97,7 @@ class _ScanPageState extends State<ScanPage> {
   Future<void> createProduct(data) async {
     DateTime now = DateTime.now();
     final productDoc = FirebaseFirestore.instance.collection("product");
-    
+
     final product = Product(
         code: data.code,
         product_name: data.product_name,

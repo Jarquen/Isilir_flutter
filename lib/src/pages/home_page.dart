@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:isilir/src/controllers/navbar_controller.dart';
 import 'package:isilir/src/features/router.dart';
-import 'package:isilir/src/pages/history_page.dart';
+import 'package:isilir/src/pages/favorites_page.dart';
 import 'package:isilir/src/pages/list_page.dart';
 import 'package:isilir/src/pages/presentation_page.dart';
 import 'package:isilir/src/pages/profile_page.dart';
@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
   final List<Widget> pages = [
     PresentationPage(),
     ListPage(),
-    const HistoryPage(),
+    FavoritesPage(),
     ProfilePage()
   ];
 

@@ -61,7 +61,7 @@ class _NavBarTest extends State<NavBarTest> {
                         setState(() {
                           _selectedIndex = 2;
                         });
-                        Get.toNamed(Routes.historyPage);
+                        Get.toNamed(Routes.favoritesPage);
                       }),
                   IconBottomBar(
                       text: "Profile",

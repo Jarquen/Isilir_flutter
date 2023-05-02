@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:isilir/src/controllers/auth_controller.dart';
 import 'package:isilir/src/features/router.dart';
-import '../controllers/login_controller.dart';
 import '../widgets/appbar.dart';
 import '../widgets/navbartest.dart';
 import '../widgets/scan_button.dart';
@@ -51,9 +50,6 @@ class LoginPage extends StatelessWidget {
           ],
         ),
       ),
-      // bottomNavigationBar: const NavBar(),
-      // floatingActionButton: ScanButton(onPressed: () {}),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

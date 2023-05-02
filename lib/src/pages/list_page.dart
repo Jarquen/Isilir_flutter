@@ -12,54 +12,66 @@ class ListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Center(
-          child: !ListController().isLoading.value
-              ? ListView.builder(
-                  itemCount: listController.products.length,
-                  itemBuilder: (context, index) {
-                    final product = listController.products[index];
-                    // print(product as Product);
-                    final image = product['image_url'];
-                    final name = product['product_name'];
-                    final brands = product['brands'];
-                    final code = product['code'];
+    return SafeArea(
+        child: Column(
+      children: [
+        TextButton(
+            onPressed: () {
+              listController.fetchAllProducts();
+            },
+            child: const Text("Refresh")),
+        Obx(() => SizedBox(
+          height: 650,
+              child: !ListController().isLoading.value
+                  ? ListView.builder(
+                      itemCount: listController.products.length,
+                      itemBuilder: (context, index) {
+                        final product = listController.products[index];
+                        final image = product['image_url'];
+                        final name = product['product_name'];
+                        final brands = product['brands'];
+                        final code = product['code'];
 
-                    return Card(
-                      child: ListTile(
-                        leading: Image.network(image),
-                        title: Text(name),
-                        subtitle: Text(brands),
-                        trailing: PopupMenuButton<String>(
-                            // onSelected: ;
-                            itemBuilder: (BuildContext context) => [
-                                  PopupMenuItem(
-                                    child: const ListTile(
-                                      contentPadding: EdgeInsets.zero,
-                                      leading: Icon(Icons.delete),
-                                      title: Text("Delete"),
-                                    ),
-                                    onTap: () {
-                                      listController.deleteProduct(code);
-                                      listController.fetchAllProducts();
-                                    },
-                                  ),
-                                  const PopupMenuItem(
-                                    child: ListTile(
-                                      contentPadding: EdgeInsets.zero,
-                                      leading: Icon(Icons.star_border),
-                                      title: Text("Favorite"),
-                                    ),
-                                    // onTap: ,
-                                  )
-                                ]),
-                        onTap: () => Get.to(() => InformationPage(product: product)),
-                      ),
-                    );
-                  },
-                )
-              : const Center(
-                  child: CircularProgressIndicator(),
-                ),
-        ));
+                        return Card(
+                          child: ListTile(
+                            leading: Image.network(image),
+                            title: Text(name),
+                            subtitle: Text(brands),
+                            trailing: PopupMenuButton<String>(
+                                itemBuilder: (BuildContext context) => [
+                                      PopupMenuItem(
+                                        child: const ListTile(
+                                          contentPadding: EdgeInsets.zero,
+                                          leading: Icon(Icons.delete),
+                                          title: Text("Delete"),
+                                        ),
+                                        onTap: () {
+                                          listController.deleteProduct(code);
+                                          listController.fetchAllProducts();
+                                        },
+                                      ),
+                                      PopupMenuItem(
+                                        child: const ListTile(
+                                          contentPadding: EdgeInsets.zero,
+                                          leading: Icon(Icons.star_border),
+                                          title: Text("Favorite"),
+                                        ),
+                                        onTap: () {
+                                          listController.addToFavorite(code);
+                                        },
+                                      )
+                                    ]),
+                            onTap: () =>
+                                Get.to(() => InformationPage(product: product)),
+                          ),
+                        );
+                      },
+                    )
+                  : const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+            )),
+      ],
+    ));
   }
 }

@@ -53,8 +53,8 @@ class _NavbarState extends State<Navbar> {
                     Get.find<NavbarController>().changeTabIndex(_selectedIndex);
                   }),
               IconBottomBar(
-                  text: "History",
-                  icon: Icons.history,
+                  text: "Favorites",
+                  icon: Icons.star_border,
                   selected: _selectedIndex == 2,
                   onPressed: () {
                     setState(() {

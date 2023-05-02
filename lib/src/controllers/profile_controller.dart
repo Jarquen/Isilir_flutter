@@ -13,7 +13,7 @@ class ProfileController extends GetxController {
 
   void connected() {
     if (currentUser?.email != null) {
-      userEmail.value = currentUser!.email.toString();;
+      userEmail.value = currentUser!.email.toString();
     }
   }
 

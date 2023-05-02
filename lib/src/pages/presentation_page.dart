@@ -14,7 +14,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../widgets/appbar.dart';
 import '../widgets/navbartest.dart';
 import '../widgets/scan_button.dart';
-import 'package:isilir/src/pages/history_page.dart';
+import 'package:isilir/src/pages/favorites_page.dart';
 
 class PresentationPage extends StatelessWidget {
   PresentationPage({
